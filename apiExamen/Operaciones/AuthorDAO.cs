@@ -14,9 +14,20 @@ namespace apiExamen.Operaciones
         public LibreriaContext context = new LibreriaContext();
 
         //Metodo para seleccionar a todos los authores
-        public List<Author> seleccionarTodosAuthores() { 
-            var authors = context.Authors.ToList<Author>();
-            return authors;
+        public List<BookAuthor> seleccionarTodosAuthores() {
+            /* var authors = context.Authors.ToList<Author>();
+             return authors;*/
+            var books = from a in context.Authors
+                        join b in context.Books on a.Id
+                        equals b.AuthorId
+                        select new BookAuthor
+                        {
+                            Id = a.Id,
+                            Named =a.Named,
+                            Title = b.Title
+                            
+                        };
+            return books.ToList();
         }
 
         //Metodo para crear nuevos autores

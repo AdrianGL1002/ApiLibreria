@@ -12,7 +12,7 @@ namespace ApiLibreria.Controllers
     {
         private AuthorDAO autorDao = new AuthorDAO();
         [HttpGet("AuthorAll")]
-        public List<Author> seleccionarAutores() 
+        public List<BookAuthor> seleccionarAutores() 
         {
             return autorDao.seleccionarTodosAuthores();
         }
